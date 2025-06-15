@@ -1,70 +1,52 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Reporte de Ventas</title>
+  <title>Visualización de Datos de AppSheet</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
-    th { background-color: #f2f2f2; }
-    .btn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 5px 10px;
-      text-decoration: none;
-      border-radius: 5px;
+    body { font-family: sans-serif; }
+    .data-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
+  <h1>Datos de AppSheet</h1>
 
-  <h2>Reporte de Ventas</h2>
-  <table id="ventasTable">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Cliente</th>
-        <th>Producto</th>
-        <th>Fecha</th>
-        <th>Total</th>
-        <th>Acción</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Las filas se generan con JS -->
-    </tbody>
-  </table>
+  <div id="data-output"></div>
 
   <script>
-    // Simulación de datos (pueden venir de AppSheet, Google Sheets, etc.)
-    const ventas = [
-      { id: 1, cliente:<<[vendedor]>>, producto: fecha, fecha: '2025-06-10', total: 1200 },
-      { id: 2, cliente: 'Ana Gómez', producto: 'Smartphone', fecha: '2025-06-12', total: 800 },
-      { id: 3, cliente: 'Carlos Ruiz', producto: 'Tablet', fecha: '2025-06-13', total: 600 }
-    ];
+    function getParameterByName(name, url = window.location.href) {
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
-    const baseURL = "https://www.appsheet.com/start/YOUR-APP-ID#view=DetalleVenta&row=";
+    window.onload = function() {
+      var boleta = getParameterByName('boleta');
+      var fecha = getParameterByName('fecha');
+      var hora = getParameterByName('hora');
+      var vendedor = getParameterByName('vendedor');
 
-    const tableBody = document.querySelector("#ventasTable tbody");
+      var outputDiv = document.getElementById('data-output');
 
-    ventas.forEach(venta => {
-      const row = document.createElement("tr");
-
-      row.innerHTML = `
-        <td>${venta.id}</td>
-        <td>${venta.cliente}</td>
-        <td>${venta.producto}</td>
-        <td>${venta.fecha}</td>
-        <td>$${venta.total}</td>
-        <td>
-          <a class="btn" href="${baseURL}${venta.id}" target="_blank">Ver en App</a>
-        </td>
-      `;
-
-      tableBody.appendChild(row);
-    });
+      if (boleta && fecha && hora && vendedor) {
+        outputDiv.innerHTML = `
+          <div class="data-container">
+            <strong>Boleta:</strong> ${boleta}<br>
+            <strong>Fecha:</strong> ${fecha}<br>
+            <strong>Hora:</strong> ${hora}<br>
+            <strong>Vendedor:</strong> ${vendedor}
+          </div>
+        `;
+      } else {
+        outputDiv.innerHTML = "<p>No se recibieron datos.</p>";
+      }
+    };
   </script>
-
 </body>
 </html>
