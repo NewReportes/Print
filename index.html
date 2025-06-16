@@ -56,15 +56,15 @@
 
   const tbody = document.getElementById('detalleVenta');
 
-  lineasResumen1.forEach(item => {
+  ventas.forEach(item => {
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${item.cantidad}</td>
       <td>${item.producto}</td>
       <td>$${item.precio}</td>
       <td>$${item.cantidad * item.precio}</td>
-    `;
-    tbody.appendChild(row);
+      row.classList.add('fs-5', 'text-uppercase', 'text-start');
+      tbody.appendChild(row);
   });
 </script>
 
