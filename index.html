@@ -34,9 +34,16 @@
 <a href="https://www.appsheet.com/start/APP_ID#control=AccionID" class="btn" target="_blank">Ejecutar Acción</a>
 
 <script>
+      window.onload = function() {
+      var boleta = getParameterByName('boleta');
+      var fecha = getParameterByName('fecha');
+      var hora = getParameterByName('hora');
+      var vendedor = getParameterByName('vendedor');
+      var resumen1 = obtenerParametro('resumen1');
+        
   // Simular datos del detalle de venta
   const ventas = [
-    { producto: 'Camisa', cantidad: 2, precio: 20 },
+    { producto: resumen, cantidad: 2, precio: 20 },
     { producto: 'Pantalón', cantidad: 1, precio: 35 },
     { producto: 'Zapatos', cantidad: 1, precio: 50 }
   ];
@@ -53,6 +60,7 @@
     `;
     tbody.appendChild(row);
   });
+ };
 </script>
 
 </body>
