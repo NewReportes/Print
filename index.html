@@ -1,67 +1,91 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Detalle de Venta</title>
+  <title>Detalle de Ventas</title>
   <style>
-    body { font-family: Arial; padding: 20px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f4f4f4; }
-    .btn { background-color: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
+    body { font-family: sans-serif; }
+    table { border-collapse: collapse; width: 80%; margin: 20px auto; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .appsheet-button { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; }
   </style>
 </head>
 <body>
 
-<h2>Detalle de Venta</h2>
+  <h1>Detalle de Ventas</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Producto</th>
-      <th>Cantidad</th>
-      <th>Precio Unitario</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody id="detalleVenta">
-    <!-- Datos serán insertados aquí -->
-  </tbody>
-</table>
+  <div id="ventas-container"></div>
 
-<br>
+  <script>
+    const ventasData = [
+      {
+        id: 1,
+        fecha: "2023-10-26",
+        cliente: "Cliente A",
+        total: 100,
+        detalles: [
+          { producto: "Producto X", cantidad: 2, precio: 20 },
+          { producto: "Producto Y", cantidad: 1, precio: 60 }
+        ]
+      },
+      {
+        id: 2,
+        fecha: "2023-10-27",
+        cliente: "Cliente B",
+        total: 50,
+        detalles: [
+          { producto: "Producto Z", cantidad: 5, precio: 10 }
+        ]
+      }
+    ];
 
-<a href="https://www.appsheet.com/start/APP_ID#control=AccionID" class="btn" target="_blank">Ejecutar Acción</a>
+    const ventasContainer = document.getElementById("ventas-container");
 
-<script>
-      window.onload = function() {
-      var boleta = getParameterByName('boleta');
-      var fecha = getParameterByName('fecha');
-      var hora = getParameterByName('hora');
-      var vendedor = getParameterByName('vendedor');
-      var resumen1 = obtenerParametro('resumen1');
-        
-  // Simular datos del detalle de venta
-  const ventas = [
-    { producto: resumen, cantidad: 2, precio: 20 },
-    { producto: 'Pantalón', cantidad: 1, precio: 35 },
-    { producto: 'Zapatos', cantidad: 1, precio: 50 }
-  ];
+    ventasData.forEach(venta => {
+      const ventaDiv = document.createElement("div");
 
-  const tbody = document.getElementById('detalleVenta');
+      let tableHTML = `
+        <h2>Venta #${venta.id}</h2>
+        <p>Fecha: ${venta.fecha}</p>
+        <p>Cliente: ${venta.cliente}</p>
+        <p>Total: $${venta.total}</p>
 
-  ventas.forEach(item => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${item.producto}</td>
-      <td>${item.cantidad}</td>
-      <td>$${item.precio}</td>
-      <td>$${item.cantidad * item.precio}</td>
-    `;
-    tbody.appendChild(row);
-  });
- };
-</script>
+        <h3>Detalles:</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      venta.detalles.forEach(detalle => {
+        tableHTML += `
+            <tr>
+              <td>${detalle.producto}</td>
+              <td>${detalle.cantidad}</td>
+              <td>$${detalle.precio}</td>
+            </tr>
+        `;
+      });
+
+      tableHTML += `
+          </tbody>
+        </table>
+      `;
+
+      // Deep Link Button (Ejemplo)
+      const deepLink = `https://www.appsheet.com/start/YOUR_APP_ID#appName=YOUR_APP_ID&row=${venta.id}&view=YOUR_VIEW_NAME`;
+      tableHTML += `<a href="${deepLink}" class="appsheet-button" target="_blank">Editar en AppSheet</a>`;
+
+
+      ventaDiv.innerHTML = tableHTML;
+      ventasContainer.appendChild(ventaDiv);
+    });
+  </script>
 
 </body>
 </html>
