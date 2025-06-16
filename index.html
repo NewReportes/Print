@@ -43,11 +43,12 @@
             }
   // Simular datos del detalle de venta
   var resumen1 = obtenerParametro('resumen1');
+  var resumen2 = obtenerParametro('resumen2');
+  var resumen3 = obtenerParametro('resumen3');
+  var resumen4 = obtenerParametro('resumen4');
   
   const ventas = [
-    { producto: resumen1, cantidad: 2, precio: 20 },
-    { producto: 'Pantalón', cantidad: 1, precio: 35 },
-    { producto: 'Zapatos', cantidad: 1, precio: 50 }
+    { cantidad: resumen1, producto: resumen2, precio: resumen3 }
   ];
 
   const tbody = document.getElementById('detalleVenta');
