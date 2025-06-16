@@ -50,9 +50,10 @@
   const ventas = [
     { cantidad: resumen1, producto: resumen2, precio: resumen3 }
   ];
+  tbody.appendChild(ventas);
 
   const tbody = document.getElementById('detalleVenta');
-
+   
   ventas.forEach(item => {
     const row = document.createElement('tr');
     row.innerHTML = `
