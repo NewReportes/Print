@@ -34,7 +34,16 @@
 <a href="https://www.appsheet.com/start/APP_ID#control=AccionID" class="btn" target="_blank">Ejecutar Acción</a>
 
 <script>
+  // Función para obtener parámetros de la URl
+            function obtenerParametro(nombre) {
+                nombre = nombre.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + nombre + '=([^&#]*)');
+                var resultados = regex.exec(location.search);
+                return resultados === null ? '' : decodeURIComponent(resultados[1].replace(/\+/g, ''));
+            }
   // Simular datos del detalle de venta
+  var resumen1 = obtenerParametro('resumen1');
+  
   const ventas = [
     { producto: 'Camisa', cantidad: 2, precio: 20 },
     { producto: 'Pantalón', cantidad: 1, precio: 35 },
