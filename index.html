@@ -1,52 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Visualización de Datos de AppSheet</title>
+  <meta charset="UTF-8">
+  <title>Detalle de Venta</title>
   <style>
-    body { font-family: sans-serif; }
-    .data-container {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
+    body { font-family: Arial; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    .btn { background-color: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
   </style>
 </head>
 <body>
-  <h1>Datos de AppSheet</h1>
 
-  <div id="data-output"></div>
+<h2>Detalle de Venta</h2>
 
-  <script>
-    function getParameterByName(name, url = window.location.href) {
-      name = name.replace(/[\[\]]/g, '\\$&');
-      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-          results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
+<table>
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio Unitario</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody id="detalleVenta">
+    <!-- Datos serán insertados aquí -->
+  </tbody>
+</table>
 
-    window.onload = function() {
-      var boleta = getParameterByName('boleta');
-      var fecha = getParameterByName('fecha');
-      var hora = getParameterByName('hora');
-      var vendedor = getParameterByName('vendedor');
+<br>
 
-      var outputDiv = document.getElementById('data-output');
+<a href="https://www.appsheet.com/start/APP_ID#control=AccionID" class="btn" target="_blank">Ejecutar Acción</a>
 
-      if (boleta && fecha && hora && vendedor) {
-        outputDiv.innerHTML = `
-          <div class="data-container">
-            <strong>Boleta:</strong> ${boleta}<br>
-            <strong>Fecha:</strong> ${fecha}<br>
-            <strong>Hora:</strong> ${hora}<br>
-            <strong>Vendedor:</strong> ${vendedor}
-          </div>
-        `;
-      } else {
-        outputDiv.innerHTML = "<p>No se recibieron datos.</p>";
-      }
-    };
-  </script>
+<script>
+  // Simular datos del detalle de venta
+  const ventas = [
+    { producto: 'Camisa', cantidad: 2, precio: 20 },
+    { producto: 'Pantalón', cantidad: 1, precio: 35 },
+    { producto: 'Zapatos', cantidad: 1, precio: 50 }
+  ];
+
+  const tbody = document.getElementById('detalleVenta');
+
+  ventas.forEach(item => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${item.producto}</td>
+      <td>${item.cantidad}</td>
+      <td>$${item.precio}</td>
+      <td>$${item.cantidad * item.precio}</td>
+    `;
+    tbody.appendChild(row);
+  });
+</script>
+
 </body>
 </html>
