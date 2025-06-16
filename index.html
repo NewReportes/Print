@@ -18,8 +18,8 @@
 <table>
   <thead>
     <tr>
-      <th>Producto</th>
       <th>Cantidad</th>
+      <th>Producto</th>
       <th>Precio Unitario</th>
       <th>Total</th>
     </tr>
@@ -56,8 +56,8 @@
   ventas.forEach(item => {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td>${item.producto}</td>
       <td>${item.cantidad}</td>
+      <td>${item.producto}</td>
       <td>$${item.precio}</td>
       <td>$${item.cantidad * item.precio}</td>
     `;
