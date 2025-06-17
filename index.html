@@ -2,9 +2,9 @@
   <body>
     <h2>Reporte de Venta</h2>
 
-    <p><strong>Cliente:</strong> <<[Cliente]>></p>
-    <p><strong>Fecha de Venta:</strong> <<[Fecha]>></p>
-    <p><strong>Total:</strong> $<<[Total]>></p>
+    <p><strong>Cliente:</strong> &lt;&lt;[Cliente]&lt;&lt;</p>
+    <p><strong>Fecha de Venta:</strong> &lt;&lt;[Fecha]&lt;&lt;</p>
+    <p><strong>Total:</strong> &lt;&lt;[vendedor]&lt;&lt;</p>
 
     <h3>Detalle de Productos</h3>
     <table border="1" cellpadding="5" cellspacing="0">
@@ -17,14 +17,14 @@
         </tr>
       </thead>
       <tbody>
-        <<Start: [Related Detalle Ventas]>>
+        &lt;&lt; Start: [Related Detalle Ventas] &lt;&lt;
         <tr>
-          <td><<[Producto]>> </td>
-          <td><<[Cantidad]>></td>
-          <td>$<<[Precio]>></td>
-          <td>$<<[Subtotal_itbis]>></td>
+          <td>&lt;&lt;[Producto]&lt;&lt;</td>
+          <td>&lt;&lt;[Cantidad]&lt;&lt;</td>
+          <td>&lt;&lt;[Precio]&lt;&lt;</td>
+          <td>&lt;&lt;[Subtotal_itbis]&lt;&lt;</td>
         </tr>
-        <<End>>
+        &lt;&lt; End &lt;&lt;
       </tbody>
     </table>
 
