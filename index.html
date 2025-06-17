@@ -2,9 +2,9 @@
   <body>
     <h2>Reporte de Venta</h2>
 
-    <p><b>Cliente:"&[Cliente]&"</b></p>
-    <p><strong>Fecha de Venta:</strong> "&[Fecha]&"</p>
-    <p><strong>Vendedor:</strong> "&[vendedor]&"</p>
+    <p>Cliente: &lt;&lt;[cliente]&gt;&gt;"</p>
+    <p><strong>Fecha de Venta:</strong> &lt;&lt;[Fecha]&gt;&gt;</p>
+    <p><strong>Vendedor:</strong> &lt;&lt;[vendedor]&gt;&gt;</p>
 
     <h3>Detalle de Productos</h3>
     <table border="1" cellpadding="5" cellspacing="0">
@@ -17,14 +17,14 @@
         </tr>
       </thead>
       <tbody>
-        <p><span>&lt;&lt;Start: SELECT(Detalle Venta[id_detalle],[id_boleta]=[id_boleta]) &gt;&gt;</span></p>     
+        <p>&lt;&lt;Start: SELECT(Detalle Venta[id_detalle],[id_boleta]=[id_boleta])&gt;&gt;</p>     
         <tr>
           <td>&lt;&lt;[Producto]&gt;&gt;</td>
           <td>&lt;&lt;[Cantidad]&gt;&gt;</td>
           <td>&lt;&lt;[Precio]&gt;&gt;</td>
           <td>&lt;&lt;[Subtotal_itbis]&gt;&gt;</td>
         </tr>
-        <p><span>&lt;&lt; end &gt;&gt;</span></p>
+        <p>&lt;&lt; end &gt;&gt;</p>
       </tbody>
     </table>
 
