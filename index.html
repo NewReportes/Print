@@ -1,69 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Detalle de Venta</title>
-  <style>
-    body { font-family: Arial; padding: 20px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f4f4f4; }
-    .btn { background-color: #007bff; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; }
-  </style>
-</head>
-<body>
+<html>
+  <body>
+    <h2>Reporte de Venta</h2>
 
-<h2>Detalle de Venta</h2>
+    <p><strong>Cliente:</strong> <<[Cliente]>></p>
+    <p><strong>Fecha de Venta:</strong> <<[Fecha]>></p>
+    <p><strong>Total:</strong> $<<[Total]>></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Cantidad</th>
-      <th>Producto</th>
-      <th>Precio Unitario</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody id="detalleVenta">
-    <!-- Datos serán insertados aquí -->
-  </tbody>
-</table>
+    <h3>Detalle de Productos</h3>
+    <table border="1" cellpadding="5" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <<Start: [Related Detalle Ventas]>>
+        <tr>
+          <td><<[Producto]>> </td>
+          <td><<[Cantidad]>></td>
+          <td>$<<[Precio]>></td>
+          <td>$<<[Subtotal_itbis]>></td>
+        </tr>
+        <<End>>
+      </tbody>
+    </table>
 
-<br>
-
-<a href="https://www.appsheet.com/start/APP_ID#control=AccionID" class="btn" target="_blank">Ejecutar Acción</a>
-
-<script>
-  // Función para obtener parámetros de la URl
-            function obtenerParametro(nombre) {
-                nombre = nombre.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-                var regex = new RegExp('[\\?&]' + nombre + '=([^&#]*)');
-                var resultados = regex.exec(location.search);
-                return resultados === null ? '' : decodeURIComponent(resultados[1].replace(/\+/g, ''));
-            }
-  // Simular datos del detalle de venta
-  var resumen1 = obtenerParametro('resumen1');
-  var resumen2 = obtenerParametro('resumen2');
-  var resumen3 = obtenerParametro('resumen3');
-  var resumen4 = obtenerParametro('resumen4');
-
-  const ventas = [
-    { cantidad: resumen1, producto: resumen2, precio: resumen3 }
-  ];
-
-  const tbody = document.getElementById('detalleVenta');
-   
-  ventas.forEach(item => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${item.cantidad}</td>
-      <td>${item.producto}</td>
-      <td>$${item.precio}</td>
-      <td>$${item.cantidad * item.precio}</td>
-      `;
-     tbody.appendChild(row);
-  });
-</script>
-
-</body>
+    <br>
+    <p>
+      Para ver la venta en la app, haga clic aquí: <br>
+      <a href="<<Action: AppLink>>">Ver en AppSheet</a>
+    </p>
+  </body>
 </html>
