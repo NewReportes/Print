@@ -3,8 +3,8 @@
     <h2>Reporte de Venta</h2>
 
     <p>Cliente: <<[cliente]>></p>
-    <p><strong>Fecha de Venta:</strong> &lt;&lt;[Fecha]&gt;&gt;</p>
-    <p><strong>Vendedor:</strong> &lt;&lt;[vendedor]&gt;&gt;</p>
+    <p>Fecha de Venta: <<[Fecha]>></p>
+    <p>Vendedor: <<[vendedor]>></p>
 
     <h3>Detalle de Productos</h3>
     <table border="1" cellpadding="5" cellspacing="0">
@@ -17,14 +17,14 @@
         </tr>
       </thead>
       <tbody>
-        <p>&lt;&lt;Start: SELECT(Detalle Venta[id_detalle],[id_boleta]=[id_boleta])&gt;&gt;</p>     
+        <p><<Start: SELECT(Detalle Venta[id_detalle],[id_boleta]=[id_boleta])>></p>     
         <tr>
-          <td>&lt;&lt;[Producto]&gt;&gt;</td>
-          <td>&lt;&lt;[Cantidad]&gt;&gt;</td>
-          <td>&lt;&lt;[Precio]&gt;&gt;</td>
-          <td>&lt;&lt;[Subtotal_itbis]&gt;&gt;</td>
+          <td><<[Producto]>></td>
+          <td><<[Cantidad]>></td>
+          <td><<[Precio]>></td>
+          <td><<[Subtotal_itbis]>></td>
         </tr>
-        <p>&lt;&lt; end &gt;&gt;</p>
+        <p><<end>></p>
       </tbody>
     </table>
 
